@@ -1,0 +1,114 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = "You're In | Meridian Specialty Coffee";
+const description = "Thanks for joining the Meridian waitlist. We'll be in touch before launch with early access and first-look offers.";
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || '';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: "You're In",
+    url: `${siteUrl}/thanks`,
+    description,
+    isPartOf: { '@type': 'WebSite', name: 'Meridian', url: siteUrl },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: "You're In", item: `${siteUrl}/thanks` },
+    ],
+  },
+];
+
+const shareUrl = `${siteUrl}/`;
+const tweetText = encodeURIComponent('Just joined the @meridiancoffee waitlist. Specialty coffee, sourced with intention.');
+const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=${encodeURIComponent(shareUrl)}`;
+---
+<Base title={title} description={description} ogType="website" structuredData={structuredData}>
+
+  <section class="relative overflow-hidden">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[680px] h-[680px] rounded-full opacity-25 blur-3xl"
+           style="background: radial-gradient(closest-side, #c79a5a 0%, transparent 70%);"></div>
+    </div>
+
+    <div class="relative max-w-3xl mx-auto px-6 pt-24 pb-16 text-center">
+
+      <!-- Stamp -->
+      <div class="inline-flex items-center gap-3 border hairline px-5 py-2 font-mono text-[11px] uppercase tracking-[0.3em] opacity-80">
+        <span class="w-2 h-2 rounded-full bg-amber"></span>
+        Confirmed · Meridian Waitlist · 2026
+      </div>
+
+      <h1 class="font-display text-6xl md:text-8xl leading-[0.95] mt-10 tracking-tight">
+        You&rsquo;re on
+        <span class="block italic text-amber">the list.</span>
+      </h1>
+
+      <p class="mt-8 text-lg md:text-xl opacity-80 leading-relaxed max-w-xl mx-auto">
+        Thank you. Your seat at the first hundred is reserved. We&rsquo;ll write once when the doors open — no noise in the meantime.
+      </p>
+
+      <!-- Numbered card -->
+      <div class="mt-12 mx-auto max-w-md border hairline p-8 text-left bg-ink-soft">
+        <p class="font-mono text-[11px] uppercase tracking-[0.3em] opacity-60">What happens next</p>
+        <ul class="mt-5 space-y-4 text-sm opacity-90">
+          <li class="flex gap-4">
+            <span class="font-mono text-amber w-6">01</span>
+            <span>A confirmation note will land in your inbox in the next minute. (If it&rsquo;s shy, peek in promotions.)</span>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-mono text-amber w-6">02</span>
+            <span>We&rsquo;ll send a quiet update before launch — tasting notes, a behind-the-scenes look at the inaugural lot, the order window.</span>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-mono text-amber w-6">03</span>
+            <span>You get first pick when we open. The launch lot is numbered, signed by the roaster, and shipped before public release.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Share -->
+      <div class="mt-14">
+        <p class="font-mono text-[11px] uppercase tracking-[0.3em] opacity-60 mb-4">Tell someone with taste</p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a href={tweetUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 border hairline px-5 py-3 text-xs font-mono uppercase tracking-widest hover:bg-amber hover:text-ink hover:border-amber transition">
+            Share on X <span aria-hidden="true">→</span>
+          </a>
+          <button data-copy={shareUrl} class="inline-flex items-center gap-2 border hairline px-5 py-3 text-xs font-mono uppercase tracking-widest hover:bg-amber hover:text-ink hover:border-amber transition">
+            <span data-copy-label>Copy Link</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer links -->
+      <div class="mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm opacity-80">
+        <a href="/" class="underline decoration-amber underline-offset-4 hover:text-amber">← Back to home</a>
+        <span class="hidden sm:inline opacity-40">·</span>
+        <a href="/about" class="underline decoration-amber underline-offset-4 hover:text-amber">Read the Meridian story</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>('button[data-copy]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const url = btn.getAttribute('data-copy') || '';
+        const label = btn.querySelector<HTMLSpanElement>('[data-copy-label]');
+        try {
+          await navigator.clipboard.writeText(url);
+          if (label) {
+            const original = label.textContent || 'Copy Link';
+            label.textContent = 'Copied ✓';
+            setTimeout(() => { label.textContent = original; }, 1800);
+          }
+        } catch {}
+      });
+    });
+  </script>
+
+</Base>

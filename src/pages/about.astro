@@ -1,0 +1,143 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Our Story | Meridian Specialty Coffee';
+const description = 'Meridian was built on a belief that great coffee is a moment, not a habit. Discover the sourcing philosophy and craft behind every cup.';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || '';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'The Story Behind Meridian',
+    url: `${siteUrl}/about`,
+    description,
+    isPartOf: { '@type': 'WebSite', name: 'Meridian', url: siteUrl },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Meridian',
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.svg`,
+    foundingDate: '2026',
+    description: 'Specialty coffee brand built on precision sourcing and the ritual of exceptional coffee.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: 'Our Story', item: `${siteUrl}/about` },
+    ],
+  },
+];
+---
+<Base title={title} description={description} structuredData={structuredData}>
+
+  <article>
+    <!-- Header -->
+    <section class="border-b hairline">
+      <div class="max-w-5xl mx-auto px-6 pt-20 pb-16 md:pt-28 md:pb-20">
+        <p class="font-mono uppercase tracking-[0.3em] text-xs opacity-70 mb-6 flex items-center gap-3">
+          <span class="inline-block w-8 h-px bg-amber"></span>
+          The Meridian Story
+        </p>
+        <h1 class="font-display text-5xl md:text-7xl leading-[1.02] tracking-tight max-w-4xl">
+          The Story Behind <span class="italic text-amber">Meridian.</span>
+        </h1>
+        <p class="mt-8 text-lg md:text-xl max-w-2xl opacity-80 leading-relaxed">
+          A specialty coffee brand for people who believe great coffee is a moment, not a habit. Here&rsquo;s why we built it.
+        </p>
+      </div>
+    </section>
+
+    <!-- Pull quote -->
+    <section class="max-w-4xl mx-auto px-6 py-20 md:py-28 text-center">
+      <p class="font-display italic text-3xl md:text-5xl leading-tight">
+        &ldquo;Coffee should ask you to slow down.
+        <span class="block text-amber not-italic font-display">Not the other way around.&rdquo;</span>
+      </p>
+      <p class="mt-6 font-mono text-xs uppercase tracking-widest opacity-60">— Founders&rsquo; Note, Spring 2026</p>
+    </section>
+
+    <!-- Body -->
+    <section class="max-w-3xl mx-auto px-6 pb-24 space-y-12 text-lg leading-relaxed opacity-90">
+
+      <div>
+        <p class="font-mono uppercase tracking-[0.3em] text-xs opacity-70 mb-3 text-amber">01 — Origin</p>
+        <h2 class="font-display text-3xl md:text-4xl mb-4">It started with a complaint.</h2>
+        <p>
+          Meridian began the way most decent things do — out of frustration. A morning queue that wrapped the block. A barista shouting orders. A paper cup that tasted, generously, like a cup. We wondered when the third place became a queue, and when coffee became a transaction.
+        </p>
+        <p class="mt-4">
+          So we started looking for the coffee we wished existed. Not the loudest cup on the menu. Not the rarest. The most considered. The kind of cup that asks the room to go quiet for a second — that earns the pause it asks for.
+        </p>
+      </div>
+
+      <div>
+        <p class="font-mono uppercase tracking-[0.3em] text-xs opacity-70 mb-3 text-amber">02 — Sourcing</p>
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Five farms. One promise.</h2>
+        <p>
+          Every Meridian lot is sourced directly from a single farm. We pay above Fairtrade premium and we sign multi-year contracts so our growers can plan, replant, invest in their land, and not be at the mercy of next quarter&rsquo;s commodity price.
+        </p>
+        <p class="mt-4">
+          We work with five farms across Ethiopia, Colombia, Kenya, Guatemala, and Costa Rica — chosen not because they&rsquo;re fashionable, but because their coffee makes the room go quiet. Each origin is traceable to the producer. Each bag carries the harvest year, the altitude, the variety, and the name of the farmer.
+        </p>
+        <p class="mt-4">
+          That&rsquo;s not a marketing flourish. It&rsquo;s the entire point. <a href="/" class="underline decoration-amber underline-offset-4 hover:text-amber">Join the waitlist</a> and you&rsquo;ll see the same information on every bag we ship.
+        </p>
+      </div>
+
+      <div>
+        <p class="font-mono uppercase tracking-[0.3em] text-xs opacity-70 mb-3 text-amber">03 — Craft</p>
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Roasted the week it ships.</h2>
+        <p>
+          Coffee is at its best within ten to fourteen days of roast. That&rsquo;s a small window, and most brands ignore it because the logistics are inconvenient. Meridian doesn&rsquo;t. Every bag is roasted in small batches the week it ships, stamped with a roast date you can read with a thumbnail, and sent in resealable kraft so the second cup is as good as the first.
+        </p>
+        <p class="mt-4">
+          We don&rsquo;t blend. We don&rsquo;t hide. We don&rsquo;t pad inventory. If a lot is sold out, it&rsquo;s sold out — and we&rsquo;ll point you to the closest thing on the shelf, even if it isn&rsquo;t ours.
+        </p>
+      </div>
+
+      <div>
+        <p class="font-mono uppercase tracking-[0.3em] text-xs opacity-70 mb-3 text-amber">04 — Aesthetic</p>
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Editorial, not loud.</h2>
+        <p>
+          Coffee branding has, for the last decade, been a contest of who can shout the loudest. Neon labels, ironic copy, mascots in sunglasses. We respect it. We&rsquo;re just not it.
+        </p>
+        <p class="mt-4">
+          Meridian is built like a quiet magazine. Every bag, every email, every page is set in a serif that takes itself seriously. Every photograph earns its space. Every word does work. The brand is the cup — and the cup is the point.
+        </p>
+      </div>
+
+      <div>
+        <p class="font-mono uppercase tracking-[0.3em] text-xs opacity-70 mb-3 text-amber">05 — Ritual</p>
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Where every cup finds its moment.</h2>
+        <p>
+          We named the brand Meridian because a meridian is a line you cross — a moment of arrival. The morning meridian: the first cup, before the inbox. The afternoon meridian: the pause between meetings, the slow exhale. The evening meridian: the long espresso after a meal, when the table goes quiet and someone tells the truth.
+        </p>
+        <p class="mt-4">
+          We&rsquo;re not building a coffee brand for everyone. We&rsquo;re building it for people who treat the cup the way a sommelier treats a glass — with curiosity, restraint, and a willingness to be moved.
+        </p>
+        <p class="mt-4">
+          If that sounds like you, <a href="/" class="underline decoration-amber underline-offset-4 hover:text-amber">we&rsquo;d love to send you the first lot</a>. Or, if you&rsquo;re already on the list, <a href="/thanks" class="underline decoration-amber underline-offset-4 hover:text-amber">here&rsquo;s what happens next</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA strip -->
+    <section class="border-t hairline bg-ink-soft">
+      <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+        <h2 class="font-display text-4xl md:text-5xl">Ready for the first lot?</h2>
+        <p class="mt-4 opacity-80 max-w-xl mx-auto">The first hundred members get the launch lot — numbered, signed, shipped before public release.</p>
+        <a href="/#join" class="mt-8 inline-flex items-center gap-3 px-8 py-4 bg-amber text-ink font-mono uppercase tracking-widest text-xs hover:bg-cream transition">
+          Join the Waitlist
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+  </article>
+
+</Base>

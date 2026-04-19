@@ -1,0 +1,208 @@
+---
+import Base from '../layouts/Base.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
+
+const title = 'Meridian | Specialty Coffee — Coming Soon';
+const description = 'Meridian is a specialty coffee brand launching soon. Join the waitlist for early access to single-origin roasts and exclusive launch offers.';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || '';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Meridian',
+    url: siteUrl,
+    logo: `${siteUrl}/favicon.svg`,
+    description: 'Specialty coffee brand built on precision sourcing and the ritual of exceptional coffee.',
+    sameAs: [],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Meridian',
+    url: siteUrl,
+    description: 'Where Every Cup Finds Its Moment',
+  },
+];
+---
+<Base title={title} description={description} structuredData={structuredData}>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <!-- soft gradient ring -->
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="absolute -top-40 -right-40 w-[640px] h-[640px] rounded-full opacity-30 blur-3xl"
+           style="background: radial-gradient(closest-side, #c79a5a 0%, transparent 70%);"></div>
+      <div class="absolute bottom-[-20rem] left-[-10rem] w-[520px] h-[520px] rounded-full opacity-20 blur-3xl"
+           style="background: radial-gradient(closest-side, #f5ede1 0%, transparent 70%);"></div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-6 pt-16 pb-24 md:pt-24 md:pb-32 grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7">
+        <p class="font-mono uppercase tracking-[0.3em] text-xs opacity-70 mb-6 flex items-center gap-3">
+          <span class="inline-block w-8 h-px bg-amber"></span>
+          Coming Late 2026 &nbsp;·&nbsp; Vol. 01
+        </p>
+
+        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
+          Coffee Worth
+          <span class="block italic text-amber">the Wait.</span>
+        </h1>
+
+        <p class="mt-8 text-lg md:text-xl max-w-xl opacity-80 leading-relaxed">
+          Meridian is a specialty coffee brand built on precision sourcing, editorial restraint, and the quiet ritual of a cup that asks you to slow down. We&rsquo;re opening doors to the first hundred soon — be among them.
+        </p>
+
+        <div id="join" class="mt-10">
+          <WaitlistForm variant="hero" id="hero-waitlist" />
+          <p class="mt-4 text-xs font-mono uppercase tracking-widest opacity-50">
+            No spam. One letter when we launch. Maybe a quiet note about the first roast.
+          </p>
+        </div>
+
+        <div class="mt-14 flex flex-wrap items-center gap-x-10 gap-y-4 text-xs font-mono uppercase tracking-widest opacity-60">
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber"></span> Single Origin</span>
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber"></span> Direct Trade</span>
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber"></span> Roasted to Order</span>
+        </div>
+      </div>
+
+      <!-- Visual: editorial card -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative aspect-[4/5] border hairline overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80"
+            alt="A still life of a freshly brewed pour-over coffee in soft window light, the Meridian editorial mood"
+            class="absolute inset-0 w-full h-full object-cover opacity-90"
+            loading="eager"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent"></div>
+          <div class="absolute top-4 left-4 right-4 flex items-start justify-between text-xs font-mono uppercase tracking-widest text-cream/90">
+            <span>Lot No. 001</span>
+            <span>Pre-Release</span>
+          </div>
+          <div class="absolute bottom-5 left-5 right-5 text-cream">
+            <p class="font-display italic text-2xl leading-snug">&ldquo;A meridian is a line you cross&nbsp;— a moment of arrival.&rdquo;</p>
+            <p class="mt-2 text-[11px] font-mono uppercase tracking-widest opacity-70">— from the Meridian Field Notes</p>
+          </div>
+        </div>
+        <div class="absolute -bottom-6 -left-6 hidden lg:block bg-amber text-ink p-5 max-w-[220px] shadow-2xl">
+          <p class="font-display text-2xl leading-tight">First 100 members get the launch lot.</p>
+          <p class="mt-2 text-[11px] font-mono uppercase tracking-widest opacity-80">Reserved · Numbered · Yours</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ticker -->
+    <div class="border-y hairline overflow-hidden">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center gap-10 text-xs font-mono uppercase tracking-[0.25em] opacity-70 whitespace-nowrap overflow-x-auto">
+        <span>Ethiopia · Yirgacheffe</span>
+        <span>·</span>
+        <span>Colombia · Huila</span>
+        <span>·</span>
+        <span>Kenya · Nyeri</span>
+        <span>·</span>
+        <span>Guatemala · Huehuetenango</span>
+        <span>·</span>
+        <span>Costa Rica · Tarrazú</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND STORY -->
+  <section id="ritual" class="max-w-6xl mx-auto px-6 py-24 md:py-32 grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-4">
+      <p class="font-mono uppercase tracking-[0.3em] text-xs opacity-70 mb-4">Chapter 01 — Origin</p>
+      <h2 class="font-display text-4xl md:text-5xl leading-tight">A brand that began with one quiet morning.</h2>
+    </div>
+    <div class="lg:col-span-7 lg:col-start-6 space-y-6 text-base md:text-lg leading-relaxed opacity-85">
+      <p>
+        Meridian started as a complaint. The kind that mutters into a paper cup at 7:14 a.m., wondering when coffee got loud — when did it stop being a moment, and start being a transaction? When did the third place become a queue?
+      </p>
+      <p>
+        We built Meridian for the cup that&rsquo;s worth waiting for. Not the rush. The pause. The slow exhale before the day begins. A specialty coffee brand for people who treat the brew the way a sommelier treats a glass — with curiosity, restraint, and a willingness to be moved.
+      </p>
+      <p>
+        Every lot is sourced directly from a single farm. Roasted in small batches the week it ships. Numbered. Honest. Quiet on the shelf, loud in the cup.
+      </p>
+      <a href="/about" class="inline-flex items-center gap-2 mt-4 text-sm font-mono uppercase tracking-widest border-b hairline pb-1 hover:text-amber hover:border-amber transition">
+        Read the full story
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- SOURCING -->
+  <section id="sourcing" class="border-y hairline">
+    <div class="max-w-6xl mx-auto px-6 py-24 md:py-28">
+      <div class="flex items-end justify-between mb-12 flex-wrap gap-4">
+        <div>
+          <p class="font-mono uppercase tracking-[0.3em] text-xs opacity-70 mb-3">Chapter 02 — Sourcing</p>
+          <h2 class="font-display text-4xl md:text-5xl leading-tight max-w-2xl">Five origins. One standard. Zero compromises.</h2>
+        </div>
+        <p class="max-w-md opacity-70 text-sm leading-relaxed">
+          We work with five farms across three continents. Each contract is direct, traceable, and built to outlast a single harvest. No middlemen, no anonymous blends — just coffee with a name.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-px bg-current/10">
+        {[
+          { region: 'Yirgacheffe', country: 'Ethiopia', notes: 'Bergamot · Honey · Stone fruit', altitude: '1,950m' },
+          { region: 'Huila', country: 'Colombia', notes: 'Brown sugar · Plum · Cocoa', altitude: '1,750m' },
+          { region: 'Nyeri', country: 'Kenya', notes: 'Black currant · Tomato leaf · Cane', altitude: '1,800m' },
+          { region: 'Huehuetenango', country: 'Guatemala', notes: 'Hazelnut · Caramel · Apricot', altitude: '1,650m' },
+          { region: 'Tarrazú', country: 'Costa Rica', notes: 'Citrus zest · Almond · Honey', altitude: '1,700m' },
+          { region: 'Coming Soon', country: 'Lot 006', notes: 'A fresh discovery — TBA', altitude: '—', soft: true },
+        ].map((o) => (
+          <article class={`p-8 bg-ink-soft ${o.soft ? 'opacity-50' : ''}`}>
+            <p class="font-mono text-xs uppercase tracking-widest opacity-60">{o.country}</p>
+            <h3 class="font-display text-3xl mt-2">{o.region}</h3>
+            <p class="mt-6 text-sm opacity-80 leading-relaxed">{o.notes}</p>
+            <p class="mt-6 font-mono text-xs uppercase tracking-widest opacity-50">Altitude {o.altitude}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="max-w-6xl mx-auto px-6 py-24 md:py-32">
+    <p class="font-mono uppercase tracking-[0.3em] text-xs opacity-70 mb-4">Chapter 03 — Launch</p>
+    <h2 class="font-display text-4xl md:text-5xl leading-tight max-w-3xl">What waitlist members get first.</h2>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-6">
+      <div class="border hairline p-8 hover:bg-ink-soft transition">
+        <p class="font-mono text-xs uppercase tracking-widest text-amber">01</p>
+        <h3 class="font-display text-2xl mt-3">Launch-lot reservation</h3>
+        <p class="mt-3 text-sm opacity-80 leading-relaxed">First pick of the inaugural roast. Numbered bags, signed by the roaster, shipped before public release.</p>
+      </div>
+      <div class="border hairline p-8 hover:bg-ink-soft transition">
+        <p class="font-mono text-xs uppercase tracking-widest text-amber">02</p>
+        <h3 class="font-display text-2xl mt-3">Founders pricing</h3>
+        <p class="mt-3 text-sm opacity-80 leading-relaxed">A permanent 15% off your first year of subscription. The kind of thank-you that lasts.</p>
+      </div>
+      <div class="border hairline p-8 hover:bg-ink-soft transition">
+        <p class="font-mono text-xs uppercase tracking-widest text-amber">03</p>
+        <h3 class="font-display text-2xl mt-3">Field Notes</h3>
+        <p class="mt-3 text-sm opacity-80 leading-relaxed">Quiet emails from origin trips, brew guides, and the occasional unannounced micro-lot.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="border-t hairline">
+    <div class="max-w-3xl mx-auto px-6 py-24 md:py-32 text-center">
+      <p class="font-mono uppercase tracking-[0.3em] text-xs opacity-70 mb-4">One more thing</p>
+      <h2 class="font-display text-4xl md:text-6xl leading-tight">
+        Where every cup
+        <span class="italic text-amber">finds its moment.</span>
+      </h2>
+      <p class="mt-6 opacity-80 max-w-xl mx-auto">
+        Add your email. We&rsquo;ll write once, when the doors open. That&rsquo;s the deal.
+      </p>
+      <div class="mt-10 flex justify-center">
+        <WaitlistForm variant="inline" id="footer-waitlist" />
+      </div>
+    </div>
+  </section>
+
+</Base>
