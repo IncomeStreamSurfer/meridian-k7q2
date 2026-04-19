@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0e0d0b;
+  --color-ink-soft: #1a1815;
+  --color-cream: #f5ede1;
+  --color-cream-soft: #ebe2d3;
+  --color-amber: #c79a5a;
+  --color-amber-deep: #a87b3e;
+  --color-mute: #8a8378;
+  --font-display: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-cream);
+    color: var(--color-ink);
+  }
+  .dark body {
+    background: var(--color-ink);
+    color: var(--color-cream);
+  }
+  ::selection {
+    background: var(--color-amber);
+    color: var(--color-ink);
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-mono { font-family: var(--font-mono); }
+  .grain {
+    background-image:
+      radial-gradient(rgba(14,13,11,0.06) 1px, transparent 1px),
+      radial-gradient(rgba(199,154,90,0.05) 1px, transparent 1px);
+    background-size: 18px 18px, 24px 24px;
+    background-position: 0 0, 9px 9px;
+  }
+  .dark .grain {
+    background-image:
+      radial-gradient(rgba(245,237,225,0.04) 1px, transparent 1px),
+      radial-gradient(rgba(199,154,90,0.06) 1px, transparent 1px);
+  }
+  .hairline { border-color: rgba(14,13,11,0.12); }
+  .dark .hairline { border-color: rgba(245,237,225,0.12); }
+}
