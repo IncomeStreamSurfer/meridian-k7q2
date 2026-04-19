@@ -1,0 +1,73 @@
+---
+interface Props {
+  variant?: 'hero' | 'inline';
+  id?: string;
+}
+const { variant = 'hero', id = 'waitlist-form' } = Astro.props;
+---
+<form
+  id={id}
+  data-waitlist
+  action="/api/subscribe"
+  method="POST"
+  class={`w-full ${variant === 'hero' ? 'max-w-xl' : 'max-w-md'}`}
+>
+  <div class="flex flex-col sm:flex-row gap-2 border hairline rounded-none p-2 backdrop-blur bg-ink/30">
+    <input
+      type="email"
+      name="email"
+      required
+      autocomplete="email"
+      placeholder="your@email.com"
+      class="flex-1 bg-transparent px-4 py-3 outline-none placeholder:opacity-50 text-base font-sans focus:placeholder:opacity-30"
+    />
+    <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+    <button
+      type="submit"
+      class="inline-flex items-center justify-center gap-2 px-6 py-3 font-mono uppercase tracking-widest text-xs bg-amber text-ink hover:bg-cream hover:text-ink transition"
+    >
+      <span data-label>Join the Waitlist</span>
+      <span aria-hidden="true">→</span>
+    </button>
+  </div>
+  <p data-message class="mt-3 text-xs font-mono uppercase tracking-widest opacity-60 min-h-[1em]"></p>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-waitlist]').forEach((form) => {
+    const msg = form.querySelector<HTMLParagraphElement>('[data-message]');
+    const label = form.querySelector<HTMLSpanElement>('[data-label]');
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!button || !label || !msg) return;
+      const data = new FormData(form);
+      const email = String(data.get('email') || '').trim();
+      const company = String(data.get('company') || '');
+      if (company) return; // honeypot
+      if (!email) return;
+      button.disabled = true;
+      label.textContent = 'Sending…';
+      msg.textContent = '';
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (res.ok) {
+          window.location.assign('/thanks');
+          return;
+        }
+        msg.textContent = json.error || 'Something went wrong. Try again?';
+        label.textContent = 'Join the Waitlist';
+        button.disabled = false;
+      } catch (err) {
+        msg.textContent = 'Network error — try again in a moment.';
+        label.textContent = 'Join the Waitlist';
+        button.disabled = false;
+      }
+    });
+  });
+</script>
